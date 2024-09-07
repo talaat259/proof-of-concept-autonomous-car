@@ -118,7 +118,7 @@ w, plays a crucial role in this calculation, as it represents the distance betwe
 
 			  
 The below figure shows the overall algorithm.
-![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image15.png)
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image16.png)
 ### 
 
 ### 
@@ -128,14 +128,40 @@ The below figure shows the overall algorithm.
 ### 
 
 ### 
+After determining the required velocities to align the prototype with the desired vehicle behavior, we proceed to map these velocities to the motor driver's output. This mapping ensures that the calculated velocities are appropriately translated into commands that drive the motors, thereby achieving the desired performance and handling characteristics for the prototype.
 
+
+
+
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image12.png)
 ### 
 
 Steering control :  
-	The steering control system was composed of two part the the actuation part mounted on the end of the steering rod (nearest point for the steering geometry ) and the steering encoder (customised servo) mounted on the top of the rod to ensure a closed loop control system as shown in  figure: 5.7.x where the green nodes represent the low control system while the blue nodes are the sensors of the system other than the camera.
+	The steering control system consists of two main components: the actuation mechanism and the steering encoder. The actuation mechanism is mounted at the end of the steering rod, providing precise control at the point closest to the steering geometry. The steering encoder, a customized servo, is positioned at the top of the steering rod to enable a closed-loop control system.
 
-This section discusses the algorithm behind the steering control system and the conversion from an open loop system(dc motor) to  a servo motor  
-First we get the required angle from the control node we translate them to match the origen of the encoder ,so the reference angel matches the required angle
+Figure 5.7.x illustrates the system, with green nodes representing the low-level control components and blue nodes denoting the sensors, excluding the camera. This configuration ensures accurate feedback and control, integrating both actuation and measurement to optimize steering performance.
+
+
+
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image17.png)
+
+
+This section explores the algorithm underpinning the steering control system, focusing on the transition from an open-loop system using a DC motor to a closed-loop system employing a servo motor.
+
+
+Initially, we obtain the desired steering angle from the control node. This angle is then translated to align with the origin of the encoder, ensuring that the reference angle accurately reflects the required steering angle. This process facilitates precise alignment between the control commands and the actual steering position, enabling effective closed-loop control with the servo motor.
+
+
+### 
+
+
+![Alt Text]( https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image10.png)
+
+
+
+### 
+
+###
 
 ### 
 
@@ -151,15 +177,25 @@ First we get the required angle from the control node we translate them to match
 
 ### 
 
-### 
+Based on the calculated error between the target angle and the actual angle, we generate a control signal to actuate the motor:
 
-### 
+Signal +1: If the target angle is greater than the actual angle, indicating that the steering needs to be adjusted to a larger angle.
+Signal -1: If the actual angle exceeds the target angle, meaning the steering needs to be adjusted to a smaller angle.
+Signal 0: If the actual angle matches the target angle within a predefined margin of error, indicating that the steering is correctly positioned.
+This control signal drives the motor to correct any discrepancies and achieve the desired steering angle with precision.
 
-### 
 
-### Then according to the error we produce a signal to actuate the motor 
 
-1 if the target is greater than the actual,-1 if the target is actual angle greater than the target and 0 if the angel is achieved or in a margin of error set in the algorithm
+
+
+
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image8.png)
+
+
+
+
+
+
 
 ### 
 
