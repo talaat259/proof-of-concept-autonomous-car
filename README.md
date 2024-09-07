@@ -54,8 +54,7 @@ Subsequently, the steering direction is computed as either positive (right) or n
 Assuming that both wheels share the same angular velocity as the geometric center of the vehicle, we compute the velocities for the inner and outer wheels. The track width, denoted by 
 𝑤
 w, plays a crucial role in this calculation, as it represents the distance between the left and right wheels.
-
-                                ![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/omega_calc.png)
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/omega_calc.png)
 
 
 ### 
