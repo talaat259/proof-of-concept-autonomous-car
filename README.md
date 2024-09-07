@@ -20,13 +20,13 @@ In our system, we employ two in-hub motors instead of a traditional differential
 
 Upon receiving the target velocity and current steering angle, the algorithm calculates the instantaneous turning radius, denoted as 'r,' which is a critical factor in the vehicle's control logic. This calculation is essential for determining how the vehicle will maneuver, ensuring accurate and smooth operation.
 
-Figure 5.7.3 illustrates the geometric relationship used to determine the radius, while Figure 5.7.4 presents the pseudocode that outlines the process for implementing this calculation within the control system.
+Figure 1.3 illustrates the geometric relationship used to determine the radius, while Figure 1.4 presents the pseudocode that outlines the process for implementing this calculation within the control system.
 
-Fig 5.7.3
+Fig 1.3
 ![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image13.jpg)
 
 
-Fig 5 .7.4
+Fig 1.4
 ![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image14.png)
 
 ### 
@@ -49,17 +49,14 @@ Fig 5 .7.4
 
 ### 
 
-Then we compute the direction of steering either positive or negative(+ve is right while \-ve is left on a local frame for the vehicle) by knowing which part is left and right by the sign of the angle we can compute the outer and inner wheel and calculate the target velocity for each wheel   
-With the assumption that both have the same angular velocity as the geometric center of the car.  
-the   symbolizes the track width.
+Subsequently, the steering direction is computed as either positive (right) or negative (left) based on the sign of the steering angle in the vehicle's local frame. By determining the relative position of the wheels—left or right—using the sign of the angle, we can then calculate the target velocity for each wheel.
 
-###                                         centre\=inner=outer
+Assuming that both wheels share the same angular velocity as the geometric center of the vehicle, we compute the velocities for the inner and outer wheels. The track width, denoted by 
+𝑤
+w, plays a crucial role in this calculation, as it represents the distance between the left and right wheels.
 
-### Inner velocity\=(r-(1/2\*()))r
+                                ![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/omega_calc.png)
 
-### outer velocity\=(r+(1/2\*()))r
-
-### 
 
 ### 
 
@@ -76,10 +73,15 @@ the   symbolizes the track width.
 ### 
 
 ### 
+
+### 
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image7.png)
 
 ### 
 
 ### 		Due to the inconstant acceleration of the original car design (presence of jerk) and the unmatched speed between the car which is 32 m/s and the max velocity for the prototype of 1.4524 m/s.We can derive the following mapping function. 
+
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image15.png)
 
 ### 
 
@@ -113,7 +115,7 @@ the   symbolizes the track width.
 
 			  
 The below figure shows the overall algorithm.
-
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image15.png)
 ### 
 
 ### 
