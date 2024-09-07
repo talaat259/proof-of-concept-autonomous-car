@@ -1,25 +1,33 @@
  	Validation and Prototype
 
-This section details the development of a prototype pipeline designed for controlling an autonomous vehicle. The pipeline utilizes a combination of readily available sensors and custom-designed sensors created by the research team. A dedicated low-level control system (LCS), depicted in Figure 5.7.1, manages communication and control between the sensors and any involved motors using ROSserial. The primary objective of this section is to present the design and implementation of this prototype pipeline, serving as a foundation for further validation and development in subsequent sections.
+This section outlines the creation of a prototype pipeline for controlling an autonomous vehicle, leveraging a combination of commercially available sensors alongside custom-designed sensors. A specialized low-level control system (LCS), as illustrated in Figure 1.3, is employed to manage communication and control between the sensors and actuators, utilizing ROSserial for seamless integration. The primary aim of this section is to present the design and implementation of this prototype pipeline, which establishes the groundwork for subsequent validation, refinement, and development in later stages of the project.
+**Figure 1.3**
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image11.png)
 
-**Figure 5.7.1**
 
-For the used sensors, we used an IMU integrated in the Zed 2i camera and a modified servo motor used as a steering angle Encoder mounted on the steering rod.
+For the sensor setup, the integrated IMU within the Zed 2i camera and a modified servo motor, repurposed as a steering angle encoder mounted on the steering rod, were utilized.
 
-The modification applied to the SG90 Servo was an extra connection welded to the output signal of the potentiometer used in the motor to originally control its angle, after that, this signal is mapped to the angle limits of the motor. thus creating an angle encoder from a servo motor (SG90)  figure 5.7.2 shows the servo circuit  
+The modification applied to the SG90 servo motor involved the addition of an external connection soldered to the potentiometer's output signal, which is typically used to control the motor's angle. This signal is then calibrated to correspond to the motor's angular limits, effectively transforming the SG90 servo into a functional steering angle encoder. Figure 1.2 illustrates the  servo circuit.
+**Figure 1.2**
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image9.jpg)
+
 Now discussing the intuition regarding the motor control for longitudinal control  
    
  Torque vectoring:  
-	Most modern cars, especially those with just one electric motor, rely on a key part called a differential to handle how the car behaves when turning. This differential becomes especially important when the car goes around a curve. Since the car is turning, the inner wheel doesn't need to travel as far as the outer wheel. The differential allows the inner wheel to spin slower than the outer wheel, which helps the car turn smoothly and prevents the tires from scrubbing.  
-In our case, we use two in-hub motors and no differential to control the wheel speed and thus we use torque vectoring, where we can control each wheel independently and simultaneously keep the resultant (required )  car velocity required by the higher control in the subsystem.
+	In modern vehicles, particularly those with a single electric motor, a crucial component known as the differential plays a key role in ensuring smooth handling during turns. The differential becomes especially critical when navigating curves, as the inner wheel covers a shorter distance than the outer wheel. It enables the inner wheel to rotate at a slower speed than the outer wheel, allowing for smooth cornering and preventing tire wear due to scrubbing.
 
-First, when receiving the target velocity to be achieved and the current steering angle   
-We can calculate the instant radius of the vehicle ‘r’ which is pivotal in our algorithm  
-As shown in figure 5.7.3 and figure 5.7.4 shows the pseudocode.
+In our system, we employ two in-hub motors instead of a traditional differential, utilizing a torque vectoring approach. This allows for independent control of each wheel's speed while maintaining the overall vehicle velocity as determined by the higher-level control subsystem. This method ensures precise handling and optimal performance without the need for a mechanical differential.
+
+Upon receiving the target velocity and current steering angle, the algorithm calculates the instantaneous turning radius, denoted as 'r,' which is a critical factor in the vehicle's control logic. This calculation is essential for determining how the vehicle will maneuver, ensuring accurate and smooth operation.
+
+Figure 5.7.3 illustrates the geometric relationship used to determine the radius, while Figure 5.7.4 presents the pseudocode that outlines the process for implementing this calculation within the control system.
 
 Fig 5.7.3
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image13.jpg)
 
-Fig 5 .7.3
+
+Fig 5 .7.4
+![Alt Text](https://github.com/talaat259/proof-of-concept-autonomous-car/blob/main/images/image14.png)
 
 ### 
 
